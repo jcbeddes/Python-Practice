@@ -3,21 +3,26 @@ import random
 print("Welcome to number guesser!")
 
 def get_guess():
-    number = random.randint(1, 10)
+    number = random.randint(1, 1000)
+    counter = 0
+    print(f"Guess counter: {counter}")
     while True:
         try:
-            guess = int(input("Guess a number between 1 and 10: "))
-
-            if guess < 1 or guess > 10:
-                print("Out of range. Please guess between 1 and 10.")
+            guess = int(input("Guess a number between 1 and 1000: "))
+            if guess < 1 or guess > 1000:
+                counter += 1
+                print(f"Out of range. Guess counter: [{counter}] Please guess between 1 and 10.")
                 continue
 
             if guess > number:
-                print("Too high! Try again!")
+                counter += 1
+                print(f"Too high! Try again! Guess counter: {counter}")
             elif guess < number:
-                print("Too low! Try again!")
+                counter += 1
+                print(f"Too low! Try again! Guess counter: {counter}")
             else:
-                print("Congrats! You win!")
+                counter += 1
+                print(f"Congrats! You won in {counter} guess!")
                 break
 
         except ValueError:
