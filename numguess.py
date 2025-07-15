@@ -1,7 +1,5 @@
 import random
 
-print("Welcome to number guesser!")
-
 def get_guess():
     number = random.randint(1, 1000)
     counter = 0
@@ -40,6 +38,7 @@ def play_again():
             print("Please type 'y' or 'n.'")
 
 def main():
+    print("Welcome to number guesser!")
     get_guess()
     play_again()
     
