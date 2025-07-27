@@ -1,4 +1,2 @@
-pressure washing ... 10 hours
-bathroom floor ... 15 hours
-pressure washing for Larry ... 10 hours
-shed door ... 15 hours
+Car detailing ... 10.0 hours
+pyhton ... 4.0 hours
