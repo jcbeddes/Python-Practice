@@ -46,26 +46,36 @@ def readfile():
         contents = file.read()
         print(contents)
 
+def usertask():
+    int(input("\nWhat other task do you wish to perform? \nAdd job:1 \nPrint job:2 \nCalculate earnings:3 \nSave to file: 4 \nView past jobs: 5 \nQuit 6 \n"))
+
 def performtask():
     task = int(input("What task do you wish to perform? \nAdd job:1 \nPrint job:2 \nCalculate earnings:3 \nSave to file: 4 \nView past jobs: 5 \nQuit 6 \n"))
     while task != 6:
-        if task == 1:
-            addjob()
-            task = int(input("\nWhat other task do you wish to perform? \nAdd job:1 \nPrint job:2 \nCalculate earnings:3 \nSave to file: 4 \nView past jobs: 5 \nQuit 6 \n"))
-        elif task == 2:
-            printjob()
-            task = int(input("\nWhat other task do you wish to perform? \nAdd job:1 \nPrint job:2 \nCalculate earnings:3 \nSave to file: 4 \nView past jobs: 5 \nQuit 6 \n"))
-        elif task == 3:
-            calculateearnings()
-            task = int(input("\nWhat other task do you wish to perform? \nAdd job:1 \nPrint job:2 \nCalculate earnings:3 \nSave to file: 4 \nView past jobs: 5 \nQuit 6 \n"))
-        elif task == 4:
-            savetofile()
-            task = int(input("\nWhat other task do you wish to perform? \nAdd job:1 \nPrint job:2 \nCalculate earnings:3 \nSave to file: 4 \nView past jobs: 5 \nQuit 6 \n"))
-        elif task == 5:
-            readfile()
-            task = int(input("\nWhat other task do you wish to perform? \nAdd job:1 \nPrint job:2 \nCalculate earnings:3 \nSave to file: 4 \nView past jobs: 5 \nQuit 6 \n"))
-        else:
-            task = int(input("\nPlease select a number 1-6: "))
+        usertask()
+        match task:    
+            case 1:
+                addjob()
+                task = usertask()
+                break
+            case 2:
+                printjob()
+                task = usertask()
+                break
+            case 3:
+                calculateearnings()
+                task = usertask()
+                break
+            case 4:
+                savetofile()
+                task = usertask()
+                break
+            case 5:
+                readfile()
+                task = usertask()
+                break
+            case _:
+                task = int(input("\nPlease select a number 1-6: "))
 
 def main():
     print("\nHello, welcome to Money Tracker!\n")
