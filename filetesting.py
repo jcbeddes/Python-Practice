@@ -1,12 +1,8 @@
-with open('testing.txt', 'r') as f:
+file_path = "C:/Users/jcbed/Desktop/testing.txt"
 
-    size_to_read = 10
-
-    f_contents = f.read(size_to_read)
-
-
-
-    # while len(f_contents) > 0:
-    #     print(f_contents, end="^")
-    #     f_contents = f.read(size_to_read)
-
+try:
+    with open(file_path, "r") as file:
+        content = file.read()
+        print(content)
+except FileNotFoundError:
+    print("File not found")
