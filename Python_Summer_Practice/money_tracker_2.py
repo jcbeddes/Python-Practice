@@ -6,7 +6,7 @@ file_path = "C:/Users/jcbed/Desktop/jobs.csv"
 def view_jobs():
     with open(file_path, "r") as file:
         content = file.read()
-        print(content)
+        print(f"\n{content}")
 
 def add_job():
     new_entry = []
@@ -23,7 +23,7 @@ def edit_job():
     with open(file_path, "r") as file:
         reader = csv.reader(file)
         jobs = list(reader)
-    print("Here are your past jobs:")
+    print("\nHere are your past jobs:")
     index = 0
     for job in jobs:
         if index == 0:
@@ -38,7 +38,7 @@ def edit_job():
             new_job = input("New job name: ")
             new_hours = float(input("New number of hours: "))
             new_rate = float(input("New hourly rate: "))
-            jobs[choice + 1] = [new_job, new_hours, new_rate]
+            jobs[choice] = [new_job, new_hours, new_rate]
         else:
             print("Invalid job number.")
             return
@@ -50,7 +50,7 @@ def edit_job():
         writer = csv.writer(file)
         writer.writerows(jobs)
 
-    print("Job updated successfully!")
+    print("Job updated successfully!\n")
 
 def remove_job():
     # Step 1: Read the jobs from the file
@@ -59,7 +59,7 @@ def remove_job():
         jobs = list(reader)
 
     # Step 2: Show jobs to the user
-    print("Here are your past jobs:")
+    print("\nHere are your past jobs:\n")
     index = 0
     for job in jobs:
         if index == 0:
@@ -73,7 +73,7 @@ def remove_job():
         choice = int(input("Which job would you like to remove? (1, 2, 3, etc.): "))
         if 1 <= choice < len(jobs):
             removed = jobs.pop(choice)
-            print(f"Deleted: {removed}")
+            print(f"\nDeleted: {removed}\n")
 
             # Step 4: Write updated list back to file
             with open(file_path, "w", newline="") as file:
@@ -92,14 +92,22 @@ def calculate_earnings():
     earnings = 0
     for job in jobs:
         if item != 0:
-            earnings += int(job[1])*int(job[2])
+            earnings += float(job[1])*float(job[2])
         item +=1
 
-    print(earnings)
+    print(f"\nYou have earned ${earnings}\n")
 
 def main():
+
     task = 0
-    task = input("Hello, welcome to Money Tracker 2.0! What do you wish to do today? You can:\n 1. View completed jobs \n 2. Add a job \n 3. Edit a past job \n 4. Remove a past job\n 5. Calculate earnings \n 6. Quit \n(1, 2, 3, 4, 5, 6) ")
+
+    try:
+        task = int(input("Hello, welcome to Money Tracker 2.0! What do you wish to do today? You can:\n 1. View completed jobs \n 2. Add a job \n 3. Edit a past job \n 4. Remove a past job\n 5. Calculate earnings \n 6. Quit \n(1, 2, 3, 4, 5, 6) "))
+        while task < 1 or task > 6:
+            task = int(input("Enter a real number idiot...\n"))     
+    except ValueError:
+        print("\nEnter a real number, idiot...\n")
+
     while task != 6:
         if task == 1:
             view_jobs()
@@ -111,8 +119,17 @@ def main():
             remove_job()
         elif task == 5:
             calculate_earnings()
-        task = input("Do you wish to perform another operation? You can:\n 1. View completed jobs \n 2. Add a job \n 3. Edit a past job \n 4. Remove a past job\n 5. Calculate earnings \n 6. Quit \n(1, 2, 3, 4, 5, 6) ")    
-    print("Goodbye.")
+        try:
+            task = int(input("Do you wish to perform another operation? You can:\n 1. View completed jobs \n 2. Add a job \n 3. Edit a past job \n 4. Remove a past job\n 5. Calculate earnings \n 6. Quit \n(1, 2, 3, 4, 5, 6) "))
+            while task < 1 or task > 6:
+                task = int(input("Enter a real number idiot...\n"))     
+        except ValueError:
+            try:
+                while task < 1 or task > 6:
+                    task = int(input("\nEnter a real number, idiot...\n"))
+            except ValueError
+    print("Goodbye.\n")
     
+
 
 main()
